@@ -56,6 +56,8 @@ autoconnect='default'
 # End of user edit section
 #==============================================================================
 
+import os
+import re
 import pyliblo3 as liblo
 import time
 from mididings import *
@@ -74,6 +76,16 @@ gstreamer_pipeline = """
                 audiotestsrc ! queue ! audioconvert ! projectm ! video/x-raw, width=640, height=480, framerate=30/1  !
                 videoconvert ! xvimagesink sync=false
 """
+
+def gst_generate_dot(pipeline, name, gst_debug_details):
+    try:
+        directory = os.environ['GST_DEBUG_DUMP_DOT_DIR']
+    except:
+        directory = os.path.realpath(os.curdir)
+
+    dotfile = os.path.join(directory, "%s.dot" % name)
+    print("Generating DOT image of pipeline '{name}' into '{file}'".format(name=name, file=dotfile))
+    Gst.debug_bin_to_dot_file(pipeline, Gst.DebugGraphDetails(int(gst_debug_details)), name)
 
 # -----------------------------------------------------------------------------
 # Set up liblo
@@ -249,69 +261,120 @@ def mididingsProcess(n):
     #end if n.type
     return n
 
-# -----------------------------------------------------------------------------
-# Set up the rest of Mididings
+    # for parsing configuration items
+import re
 
-hook(OSCInterface()) # For Livedings GUI
+def pretty(pipe: str) -> str:
+    result = ""
+    for line in pipe.splitlines():
+        line = line.strip()
+        r = re.match(r'^(!\s.*)$', line)
+        if r:
+            result += "    " + r.group(1)
+        else:
+            r = re.match(r'^([\w\-_]*\s*\=\s*.*)$', line)
+            if r:
+                result += "        " + r.group(1)
+            else:
+                r = re.match(r'^(\))$', line)
+                if r:
+                    result += r.group(1)
+                else:
+                    r = re.match(r'^bin.\($', line)
+                    if r:
+                        result += line
+                    else:
+                        result += "    " + line
+        result += "\n"
+    return result
 
-# Set up scenes
-scenes = {}
-# Song format: ('Song Name', 0, [2,3] )
-i = 1
-for song in songs:
-    scenes[i] = Scene(song[0], Pass())
-    i += 1
+# run mainclass
+def main()-> None:
 
-control = Process(mididingsProcess) >> Filter(PROGRAM) >> SceneSwitch()
+    DEBUG = True
 
-config(backend=backend,
-       client_name='greenMilk',
-       in_ports=[('in',autoconnect)],
-       out_ports=[])
+    directory = os.curdir
+    try:
+        os.chdir(directory)
+        
+    except Exception as e:
+        print(" ".join(["Something failed because of",str(e)]))
 
-# -----------------------------------------------------------------------------
-# Set up gstreamer
-Gst.init(None)
-Gst.init_python()
+    # -----------------------------------------------------------------------------
+    # Set up the rest of Mididings
 
-# -----------------------------------------------------------------------------
-# Print some info for the user
-print('\nArdour Song Switcher\n')
-print('Use Livedings if you need a visual indicator')
-print('(However, clicking on the Livedings interface will not switch songs)')
-print('')
-print('\n')
+    hook(OSCInterface()) # For Livedings GUI
 
-ardour_switchSong(currentSong)
+    # Set up scenes
+    scenes = {}
+    # Song format: ('Song Name', 0, [2,3] )
+    i = 1
+    for song in songs:
+        scenes[i] = Scene(song[0], Pass())
+        i += 1
+
+    control = Process(mididingsProcess) >> Filter(PROGRAM) >> SceneSwitch()
+
+    config(backend=backend,
+        client_name='greenMilk',
+        in_ports=[('in',autoconnect)],
+        out_ports=[])
+
+    # -----------------------------------------------------------------------------
+    # Set up gstreamer
+    Gst.init(None)
+    Gst.init_python()
+
+    # -----------------------------------------------------------------------------
+    # Print some info for the user
+    print('\ngreenMilk - Ugly code hacked around gst-projectm\n')
+    print('Use Livedings if you need a visual indicator')
+    print('')
+    print('\n')
 
 
-# GStreamer pipeline
-pipeline = Gst.parse_launch(gstreamer_pipeline)
+    if DEBUG:
+        with open("pipeline.txt","w") as file:
+            file.write(pretty(gstreamer_pipeline))
 
-# Start processing
-start_time = time.time()
-pipeline.set_state(Gst.State.PLAYING)
-bus = pipeline.get_bus()
+    # GStreamer pipeline
+    pipeline = Gst.parse_launch(gstreamer_pipeline)
+
+    if DEBUG:
+        # make DOT file from pipeline
+        gst_generate_dot(pipeline, "greenMilk-pipeline", 1) #Args.gst_debug_details)
+    
+    # Start processing
+    start_time = time.time()
+    pipeline.set_state(Gst.State.PLAYING)
+    bus = pipeline.get_bus()
 
 
-# Run mididings
-run( scenes=scenes, control=control )
+    # Run mididings
+    run( scenes=scenes, control=control )
 
-# Wait for the pipeline to finish
-msg = bus.timed_pop_filtered(
-    Gst.CLOCK_TIME_NONE, Gst.MessageType.ERROR | Gst.MessageType.EOS
-)
+    # Wait for the pipeline to finish
+    msg = bus.timed_pop_filtered(
+        Gst.CLOCK_TIME_NONE, Gst.MessageType.ERROR | Gst.MessageType.EOS
+    )
 
-if msg:
-    t = msg.type
-    if t == Gst.MessageType.ERROR:
-        err, debug = msg.parse_error()
-        print(f"Error: {err}, {debug}")
-    elif t == Gst.MessageType.EOS:
-        print("Pipeline finished successfully.")
+    if msg:
+        t = msg.type
+        if t == Gst.MessageType.ERROR:
+            err, debug = msg.parse_error()
+            print(f"Error: {err}, {debug}")
+        elif t == Gst.MessageType.EOS:
+            print("Pipeline finished successfully.")
 
-pipeline.set_state(Gst.State.NULL)
+    pipeline.set_state(Gst.State.NULL)
 
-# Log total video processing time
-total_time = time.time() - start_time
-print(f"Total wall-clock processing time for the video: {total_time:.2f} seconds")
+    # Log total video processing time
+    total_time = time.time() - start_time
+    print(f"Total wall-clock processing time for the video: {total_time:.2f} seconds")
+
+if __name__ == '__main__':
+    try:
+        main()
+    except RuntimeError as e:
+        logging.error(str(e))
+        sys.exit(1)
