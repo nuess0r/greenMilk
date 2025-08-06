@@ -34,6 +34,11 @@ pip install pyliblo3 mididings
 midireceiver.py
 ```
 
+2. Show the GUI designed with glade. No function behind, just to test the layout of it and your installation
+```
+guitest.py
+```
+
 ## Notes
 
 
@@ -42,10 +47,17 @@ midireceiver.py
 
 Uses mididings for MIDI receiving: https://das.nasophon.de/mididings/
 
-This script started based two other Python scripts that showed me the basics of
+This script started based three other Python scripts that showed me the basics of
 how to process MIDI and create a gStreamer pipeline:
 - https://github.com/noedigcode/ArdourSongSwitcher/tree/master
--https://fluendo.com/blog/opencv-to-gstreamer-cs-service/
+- https://fluendo.com/blog/opencv-to-gstreamer-cs-service/
+- https://git.slaskete.net/python-gstreamer-examples/tree
+
+Thanks for the hint to get it working on Wayland:
+- https://github.com/otsaloma/gaupol/commit/dee6b6544e6ba2d26f287d46a13a731c48fa1c9f#diff-8eeb9510b240fb19cb27c8d8ff87ae3b367c2570a48e71c4977eed73dc01212d
+
+Also thanks for the Python GUI: [Gtk 3 + Glade] tutorial:
+- https://www.youtube.com/watch?v=MLgZ6ngBZF4
 
 GStreamer Python discussion channel (Matrix): #python:gstreamer.org
 
