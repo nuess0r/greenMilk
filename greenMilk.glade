@@ -8,7 +8,9 @@
     </patterns>
   </object>
   <object class="GtkApplicationWindow" id="main">
+    <property name="visible">True</property>
     <property name="can-focus">False</property>
+    <property name="title" translatable="yes">greenMilk - Milkdrop VJ Tool</property>
     <child>
       <object class="GtkBox">
         <property name="visible">True</property>
@@ -423,34 +425,6 @@
               </packing>
             </child>
             <child>
-              <object class="GtkDrawingArea">
-                <property name="name">preview1</property>
-                <property name="visible">True</property>
-                <property name="app-paintable">True</property>
-                <property name="can-focus">False</property>
-                <property name="hexpand">True</property>
-                <property name="vexpand">True</property>
-              </object>
-              <packing>
-                <property name="left-attach">0</property>
-                <property name="top-attach">0</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkDrawingArea">
-                <property name="name">preview2</property>
-                <property name="visible">True</property>
-                <property name="app-paintable">True</property>
-                <property name="can-focus">False</property>
-                <property name="hexpand">True</property>
-                <property name="vexpand">True</property>
-              </object>
-              <packing>
-                <property name="left-attach">2</property>
-                <property name="top-attach">0</property>
-              </packing>
-            </child>
-            <child>
               <object class="GtkBox">
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
@@ -553,6 +527,42 @@
                 <property name="top-attach">0</property>
               </packing>
             </child>
+            <child>
+              <object class="GtkBox" id="preview1">
+                <property name="name">preview1</property>
+                <property name="visible">True</property>
+                <property name="app-paintable">True</property>
+                <property name="can-focus">False</property>
+                <property name="hexpand">True</property>
+                <property name="vexpand">True</property>
+                <property name="orientation">vertical</property>
+                <child>
+                  <placeholder/>
+                </child>
+              </object>
+              <packing>
+                <property name="left-attach">0</property>
+                <property name="top-attach">0</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkBox" id="preview2">
+                <property name="name">preview2</property>
+                <property name="visible">True</property>
+                <property name="app-paintable">True</property>
+                <property name="can-focus">False</property>
+                <property name="hexpand">True</property>
+                <property name="vexpand">True</property>
+                <property name="orientation">vertical</property>
+                <child>
+                  <placeholder/>
+                </child>
+              </object>
+              <packing>
+                <property name="left-attach">2</property>
+                <property name="top-attach">0</property>
+              </packing>
+            </child>
           </object>
           <packing>
             <property name="expand">False</property>
@@ -561,6 +571,18 @@
           </packing>
         </child>
       </object>
+    </child>
+  </object>
+  <object class="GtkWindow" id="screen">
+    <property name="name">screen</property>
+    <property name="visible">True</property>
+    <property name="app-paintable">True</property>
+    <property name="can-focus">False</property>
+    <property name="double-buffered">False</property>
+    <property name="default-width">440</property>
+    <property name="default-height">250</property>
+    <child>
+      <placeholder/>
     </child>
   </object>
 </interface>
