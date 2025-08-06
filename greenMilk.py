@@ -43,9 +43,6 @@ class guitest:
         # Some capabilities we want to share between different elements
         commoncaps = Gst.Caps.from_string("video/x-raw,width=1280,height=720,framerate=30/1")
 
-        # Set up the pipeline
-        #self.pipeline = Gst.Pipeline()
-
         gstreamer_pipeline = """
                         audiotestsrc ! queue ! audioconvert ! projectm ! video/x-raw, width=640, height=480, framerate=30/1  !
                         videoconvert ! gtksink name=videosink
@@ -55,8 +52,6 @@ class guitest:
 
         # Set up a bus to our pipeline to get notified when the video is ready
         self.bus = self.pipeline.get_bus()
-        self.bus.enable_sync_message_emission()
-        self.bus.connect("sync-message::element", self.OnSyncElement)
 
         if DEBUG:
             # make DOT file from pipeline
@@ -69,23 +64,16 @@ class guitest:
         self.mainwindow.connect("delete-event", Gtk.main_quit)
         self.mainwindow.show_all()
 
-
+        # Get the GTK widget from the gtkvideosink and attach it to our placeholder box
         print(self.pipeline.get_by_name("videosink"))
         print(self.pipeline.get_by_name("videosink").props.widget)
         print(self.builder.get_object("preview1"))
-        # Get the GTK widget from the gtkvideosink and attach it to our placeholder box
-        self.builder.get_object("preview1").pack_start(self.pipeline.get_by_name("videosink").props.widget, True, True, 0)
-        #self.builder.get_object("screen").add(self.pipeline.get_by_name("videosink").props.widget)
+
+        #self.builder.get_object("preview1").pack_start(self.pipeline.get_by_name("videosink").props.widget, True, True, 0)
+        self.builder.get_object("screen").add(self.pipeline.get_by_name("videosink").props.widget)
 
         # Play!
         self.pipeline.set_state(Gst.State.PLAYING)
-
-    # When we get a message that video is ready to display, set the
-    # correct window id to hook it to our viewport
-    def OnSyncElement(self, bus, message):
-        if message.get_structure().get_name() == "prepare-window-handle":
-            print("prepare-window-handle")
-            #message.src.set_window_handle(self.win_id)
 
     def gst_generate_dot(self, pipeline, name, gst_debug_details):
         try:
@@ -107,7 +95,6 @@ class guitest:
 
 if __name__ == '__main__':
     try:
-        #main = main()
         guitest = guitest()
         Gtk.main()
     except RuntimeError as e:
