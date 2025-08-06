@@ -1,11 +1,7 @@
-# Lens Correction plugin for GStreamer
+# greenMilk
 #####
 
-A GStreamer plugin written in Python to correct lens distortion using the Lenfun database. 
 
-Should be usable with any camera in the lensfun db.
-
-List of supported cameras and lenses: https://lensfun.github.io/lenslist/
 
 ## Requirements
 
@@ -30,11 +26,13 @@ pip install pyliblo3 mididings
 ```
 
 1. Test MIDI controller
+
 ```
 midireceiver.py
 ```
 
 2. Show the GUI designed with glade. No function behind, just to test the layout of it and your installation
+
 ```
 guitest.py
 ```
