@@ -618,6 +618,8 @@
     <property name="default-height">250</property>
     <property name="hide-titlebar-when-maximized">True</property>
     <property name="deletable">False</property>
+    <signal name="button-press-event" handler="screenwindow_clicked" swapped="no"/>
+    <signal name="key-press-event" handler="screenwindow_keypress" swapped="no"/>
     <child>
       <object class="GtkBox" id="screenbox">
         <property name="visible">True</property>

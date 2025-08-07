@@ -18,7 +18,7 @@ gi.require_version("Gst", "1.0")
 gi.require_version("GstBase", "1.0")
 gi.require_version("Gtk", "3.0")
 
-from gi.repository import Gst, GstBase, GLib, GObject, Gtk  # noqa: E402
+from gi.repository import Gst, GstBase, GLib, GObject, Gtk, Gdk # noqa: E402
 
 
 class guitest:
@@ -91,7 +91,7 @@ class guitest:
         print("Generating DOT image of pipeline '{name}' into '{file}'".format(name=name, file=dotfile))
         Gst.debug_bin_to_dot_file(pipeline, Gst.DebugGraphDetails(int(gst_debug_details)), name)
 
-    def printText(self, widget):
+    def print_text(self, widget):
         print("Hello World!")
 
     def load_preset1(self, widget):
@@ -105,6 +105,19 @@ class guitest:
         pm1 = self.pipeline.get_by_name("pm1")
         pm1.set_property("beat-sensitivity", 0.8)
         print("beat-sensitivity!")
+
+    def screenwindow_keypress(self, widget, event):
+        if event.keyval == Gdk.KEY_F10:
+            self.toggle_fullscreen(widget)
+    
+    def screenwindow_clicked(self, widget, event):
+        if event.button == 1 and event.type == Gdk.EventType._2BUTTON_PRESS:
+            self.toggle_fullscreen(widget)
+
+    def toggle_fullscreen(self, widget):
+        widget.is_fullscreen = not getattr(widget, 'is_fullscreen', False)
+        action = widget.fullscreen if widget.is_fullscreen else widget.unfullscreen
+        action()
 
     # Workaround to get Ctrl+C to terminate from command line
     # ref: https://bugzilla.gnome.org/show_bug.cgi?id=622084#c12
