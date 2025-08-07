@@ -40,9 +40,6 @@ class guitest:
         # Initiate Gstreamer
         Gst.init(None)
 
-        # Some capabilities we want to share between different elements
-        commoncaps = Gst.Caps.from_string("video/x-raw,width=1280,height=720,framerate=30/1")
-
         gstreamer_pipeline = """
                         jackaudiosrc client-name="greenMilk" ! queue ! audioconvert ! tee name=audioin ! \
                         queue ! projectm name=pm1 ! video/x-raw, width=1280, height=720, framerate=30/1 ! videoconvert ! tee name=pm1downscale ! 
@@ -52,8 +49,7 @@ class guitest:
                         queue ! glvideomixer name=m ! videoconvert ! gtksink name=screen
                         pm2downscale. ! queue ! videoconvertscale ! video/x-raw, width=480, height=320 ! gtksink name=preview2
         """
-        #                        audioin. ! queue ! projectm name=pm2 ! video/x-raw, width=480, height=320, framerate=30/1  !
-#                        videoconvert ! gtksink name=preview2
+
         # GStreamer pipeline
         self.pipeline = Gst.parse_launch(gstreamer_pipeline)
 
@@ -65,20 +61,22 @@ class guitest:
             self.gst_generate_dot(self.pipeline, "greenMilk-pipeline", 1)
     
 
-
         # Summon the window and connect the window's close button to quit
         self.mainwindow = self.builder.get_object("main")
         self.mainwindow.connect("delete-event", Gtk.main_quit)
 
 
         # Connect the gtksink pipeline elements to the GUI
-        # Get the GTK widget from the gtkvideosink and attach it to our placeholder box
+        # Get the GTK widget from the gtksink and attach it to our placeholder box
         self.builder.get_object("preview1").pack_start(self.pipeline.get_by_name("preview1").props.widget, True, True, 0)
         self.builder.get_object("preview2").pack_start(self.pipeline.get_by_name("preview2").props.widget, True, True, 0)
         self.builder.get_object("screenbox").add(self.pipeline.get_by_name("screen").props.widget)
 
         # Layout is finished, lets show the windows
         self.mainwindow.show_all()
+        self.screenwindow = self.builder.get_object("screen")
+        print(self.builder.get_object("screen"))
+        self.screenwindow.show_all()
 
         # Play!
         self.pipeline.set_state(Gst.State.PLAYING)
