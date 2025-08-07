@@ -44,9 +44,16 @@ class guitest:
         commoncaps = Gst.Caps.from_string("video/x-raw,width=1280,height=720,framerate=30/1")
 
         gstreamer_pipeline = """
-                        audiotestsrc ! queue ! audioconvert ! projectm ! video/x-raw, width=640, height=480, framerate=30/1  !
-                        videoconvert ! gtksink name=videosink
+                        jackaudiosrc client-name="greenMilk" ! queue ! audioconvert ! tee name=audioin ! \
+                        queue ! projectm name=pm1 ! video/x-raw, width=1280, height=720, framerate=30/1 ! videoconvert ! tee name=pm1downscale ! 
+                        queue ! m.
+                        pm1downscale. ! queue ! videoconvertscale ! video/x-raw, width=480, height=320 ! gtksink name=preview1
+                        audioin. ! queue ! projectm name=pm2 ! video/x-raw, width=1280, height=720, framerate=30/1 ! tee name=pm2downscale ! 
+                        queue ! glvideomixer name=m ! videoconvert ! gtksink name=screen
+                        pm2downscale. ! queue ! videoconvertscale ! video/x-raw, width=480, height=320 ! gtksink name=preview2
         """
+        #                        audioin. ! queue ! projectm name=pm2 ! video/x-raw, width=480, height=320, framerate=30/1  !
+#                        videoconvert ! gtksink name=preview2
         # GStreamer pipeline
         self.pipeline = Gst.parse_launch(gstreamer_pipeline)
 
@@ -62,15 +69,16 @@ class guitest:
         # Summon the window and connect the window's close button to quit
         self.mainwindow = self.builder.get_object("main")
         self.mainwindow.connect("delete-event", Gtk.main_quit)
-        self.mainwindow.show_all()
 
+
+        # Connect the gtksink pipeline elements to the GUI
         # Get the GTK widget from the gtkvideosink and attach it to our placeholder box
-        print(self.pipeline.get_by_name("videosink"))
-        print(self.pipeline.get_by_name("videosink").props.widget)
-        print(self.builder.get_object("preview1"))
+        self.builder.get_object("preview1").pack_start(self.pipeline.get_by_name("preview1").props.widget, True, True, 0)
+        self.builder.get_object("preview2").pack_start(self.pipeline.get_by_name("preview2").props.widget, True, True, 0)
+        self.builder.get_object("screenbox").add(self.pipeline.get_by_name("screen").props.widget)
 
-        #self.builder.get_object("preview1").pack_start(self.pipeline.get_by_name("videosink").props.widget, True, True, 0)
-        self.builder.get_object("screen").add(self.pipeline.get_by_name("videosink").props.widget)
+        # Layout is finished, lets show the windows
+        self.mainwindow.show_all()
 
         # Play!
         self.pipeline.set_state(Gst.State.PLAYING)
@@ -88,6 +96,17 @@ class guitest:
     def printText(self, widget):
         print("Hello World!")
 
+    def load_preset1(self, widget):
+        
+        pm1 = self.pipeline.get_by_name("pm1")
+        pm1.set_property("beat-sensitivity", 0.5)
+        print("beat-sensitivity!")
+
+    def load_preset2(self, widget):
+        
+        pm1 = self.pipeline.get_by_name("pm1")
+        pm1.set_property("beat-sensitivity", 0.8)
+        print("beat-sensitivity!")
 
     # Workaround to get Ctrl+C to terminate from command line
     # ref: https://bugzilla.gnome.org/show_bug.cgi?id=622084#c12
