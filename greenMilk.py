@@ -42,11 +42,11 @@ class guitest:
 
         gstreamer_pipeline = """
                         jackaudiosrc client-name="greenMilk" ! queue ! audioconvert ! tee name=audioin ! \
-                        queue ! projectm name=pm1 ! video/x-raw, width=1280, height=720, framerate=30/1 ! videoconvert ! tee name=pm1downscale ! 
+                        queue ! projectm name=pm1 enable-playlist=False ! video/x-raw, format=RGBA, width=1280, height=720, framerate=30/1 ! videoconvert ! tee name=pm1downscale ! 
                         queue ! m.
                         pm1downscale. ! queue ! videoconvertscale ! video/x-raw, width=480, height=320 ! gtksink name=preview1
-                        audioin. ! queue ! projectm name=pm2 ! video/x-raw, width=1280, height=720, framerate=30/1 ! tee name=pm2downscale ! 
-                        queue ! glvideomixer name=m ! videoconvert ! gtksink name=screen
+                        audioin. ! queue ! projectm name=pm2 enable-playlist=False ! video/x-raw, format=RGBA, width=1280, height=720, framerate=30/1 ! tee name=pm2downscale ! 
+                        queue ! glvideomixer name=m ! gtkglsink name=screen
                         pm2downscale. ! queue ! videoconvertscale ! video/x-raw, width=480, height=320 ! gtksink name=preview2
         """
 
@@ -59,7 +59,7 @@ class guitest:
         if DEBUG:
             # make DOT file from pipeline
             self.gst_generate_dot(self.pipeline, "greenMilk-pipeline", 1)
-    
+
 
         # Summon the window and connect the window's close button to quit
         self.mainwindow = self.builder.get_object("main")
@@ -75,7 +75,6 @@ class guitest:
         # Layout is finished, lets show the windows
         self.mainwindow.show_all()
         self.screenwindow = self.builder.get_object("screen")
-        print(self.builder.get_object("screen"))
         self.screenwindow.show_all()
 
         # Play!
@@ -95,16 +94,27 @@ class guitest:
         print("Hello World!")
 
     def load_preset1(self, widget):
+        presetbrowser = self.builder.get_object("presetbrowser")
+        pm = self.pipeline.get_by_name("pm1")
+
+        preset = presetbrowser.get_filename()
+        print(preset)
+
+        pm.set_state(Gst.State.NULL)
+        pm.set_property("preset", preset)
+        pm.set_state(Gst.State.PLAYING)
         
-        pm1 = self.pipeline.get_by_name("pm1")
-        pm1.set_property("beat-sensitivity", 0.5)
-        print("beat-sensitivity!")
 
     def load_preset2(self, widget):
-        
-        pm1 = self.pipeline.get_by_name("pm1")
-        pm1.set_property("beat-sensitivity", 0.8)
-        print("beat-sensitivity!")
+        presetbrowser = self.builder.get_object("presetbrowser")
+        pm = self.pipeline.get_by_name("pm2")
+
+        preset = presetbrowser.get_filename()
+        print(preset)
+
+        pm.set_state(Gst.State.NULL)
+        pm.set_property("preset", preset)
+        pm.set_state(Gst.State.PLAYING)
 
     def screenwindow_keypress(self, widget, event):
         if event.keyval == Gdk.KEY_F10:
