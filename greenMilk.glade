@@ -62,6 +62,35 @@
     <property name="step-increment">0.5</property>
     <property name="page-increment">10</property>
   </object>
+  <object class="GtkAdjustment" id="adjustmentcrossfader">
+    <property name="upper">100</property>
+    <property name="value">50</property>
+    <property name="step-increment">0.5</property>
+    <property name="page-increment">10</property>
+  </object>
+  <object class="GtkAdjustment" id="adjustmentmaster1">
+    <property name="upper">100</property>
+    <property name="value">100</property>
+    <property name="step-increment">0.5</property>
+    <property name="page-increment">10</property>
+  </object>
+  <object class="GtkAdjustment" id="adjustmentmaster2">
+    <property name="upper">100</property>
+    <property name="step-increment">0.5</property>
+    <property name="page-increment">10</property>
+  </object>
+  <object class="GtkAdjustment" id="adjustmentsensitivity1">
+    <property name="upper">300</property>
+    <property name="value">100</property>
+    <property name="step-increment">0.5</property>
+    <property name="page-increment">10</property>
+  </object>
+  <object class="GtkAdjustment" id="adjustmentsensitivity2">
+    <property name="upper">300</property>
+    <property name="value">100</property>
+    <property name="step-increment">0.5</property>
+    <property name="page-increment">10</property>
+  </object>
   <object class="GtkApplicationWindow" id="main">
     <property name="visible">True</property>
     <property name="can-focus">False</property>
@@ -603,7 +632,30 @@
                       </packing>
                     </child>
                     <child>
-                      <placeholder/>
+                      <object class="GtkLabel">
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
+                        <property name="label" translatable="yes">Beat Sensitivity</property>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">1</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkScale" id="senstitivity1">
+                        <property name="visible">True</property>
+                        <property name="can-focus">True</property>
+                        <property name="adjustment">adjustmentsensitivity1</property>
+                        <property name="round-digits">1</property>
+                        <property name="value-pos">left</property>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">2</property>
+                      </packing>
                     </child>
                   </object>
                   <packing>
@@ -925,7 +977,30 @@
                       </packing>
                     </child>
                     <child>
-                      <placeholder/>
+                      <object class="GtkLabel">
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
+                        <property name="label" translatable="yes">Beat Sensitivity</property>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">1</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkScale" id="senstitivity2">
+                        <property name="visible">True</property>
+                        <property name="can-focus">True</property>
+                        <property name="adjustment">adjustmentsensitivity2</property>
+                        <property name="round-digits">1</property>
+                        <property name="value-pos">right</property>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">2</property>
+                      </packing>
                     </child>
                   </object>
                   <packing>
@@ -1006,23 +1081,6 @@
         </child>
       </object>
     </child>
-  </object>
-  <object class="GtkAdjustment" id="adjustmentcrossfader">
-    <property name="upper">100</property>
-    <property name="value">50</property>
-    <property name="step-increment">0.5</property>
-    <property name="page-increment">10</property>
-  </object>
-  <object class="GtkAdjustment" id="adjustmentmaster1">
-    <property name="upper">100</property>
-    <property name="value">100</property>
-    <property name="step-increment">0.5</property>
-    <property name="page-increment">10</property>
-  </object>
-  <object class="GtkAdjustment" id="adjustmentmaster2">
-    <property name="upper">100</property>
-    <property name="step-increment">0.5</property>
-    <property name="page-increment">10</property>
   </object>
   <object class="GtkFileFilter" id="filtermilkdrop">
     <patterns>
