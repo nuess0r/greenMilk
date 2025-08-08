@@ -91,6 +91,18 @@
     <property name="step-increment">0.5</property>
     <property name="page-increment">10</property>
   </object>
+  <object class="GtkAdjustment" id="adjustmentvolume1">
+    <property name="upper">100</property>
+    <property name="value">100</property>
+    <property name="step-increment">0.5</property>
+    <property name="page-increment">10</property>
+  </object>
+  <object class="GtkAdjustment" id="adjustmentvolume2">
+    <property name="upper">100</property>
+    <property name="value">100</property>
+    <property name="step-increment">0.5</property>
+    <property name="page-increment">10</property>
+  </object>
   <object class="GtkApplicationWindow" id="main">
     <property name="visible">True</property>
     <property name="can-focus">False</property>
@@ -392,279 +404,6 @@
                 <property name="can-focus">False</property>
                 <property name="orientation">vertical</property>
                 <child>
-                  <object class="GtkBox">
-                    <property name="visible">True</property>
-                    <property name="can-focus">False</property>
-                    <property name="vexpand">True</property>
-                    <property name="orientation">vertical</property>
-                    <child>
-                      <!-- n-columns=5 n-rows=3 -->
-                      <object class="GtkGrid">
-                        <property name="visible">True</property>
-                        <property name="can-focus">False</property>
-                        <property name="vexpand">True</property>
-                        <child>
-                          <object class="GtkLabel">
-                            <property name="visible">True</property>
-                            <property name="can-focus">False</property>
-                            <property name="label" translatable="yes">R</property>
-                          </object>
-                          <packing>
-                            <property name="left-attach">0</property>
-                            <property name="top-attach">0</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkLabel">
-                            <property name="visible">True</property>
-                            <property name="can-focus">False</property>
-                            <property name="label" translatable="yes">G</property>
-                          </object>
-                          <packing>
-                            <property name="left-attach">1</property>
-                            <property name="top-attach">0</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkLabel">
-                            <property name="visible">True</property>
-                            <property name="can-focus">False</property>
-                            <property name="label" translatable="yes">B</property>
-                          </object>
-                          <packing>
-                            <property name="left-attach">2</property>
-                            <property name="top-attach">0</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkLabel">
-                            <property name="visible">True</property>
-                            <property name="can-focus">False</property>
-                            <property name="label" translatable="yes">Hue</property>
-                          </object>
-                          <packing>
-                            <property name="left-attach">3</property>
-                            <property name="top-attach">0</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkLabel">
-                            <property name="visible">True</property>
-                            <property name="can-focus">False</property>
-                            <property name="label" translatable="yes">Staturation</property>
-                          </object>
-                          <packing>
-                            <property name="left-attach">4</property>
-                            <property name="top-attach">0</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkScale" id="color_r1">
-                            <property name="visible">True</property>
-                            <property name="can-focus">True</property>
-                            <property name="vexpand">True</property>
-                            <property name="orientation">vertical</property>
-                            <property name="adjustment">adjustmentcolor_r1</property>
-                            <property name="inverted">True</property>
-                            <property name="round-digits">1</property>
-                            <property name="draw-value">False</property>
-                          </object>
-                          <packing>
-                            <property name="left-attach">0</property>
-                            <property name="top-attach">1</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkScale" id="color_b1">
-                            <property name="visible">True</property>
-                            <property name="can-focus">True</property>
-                            <property name="vexpand">True</property>
-                            <property name="orientation">vertical</property>
-                            <property name="adjustment">adjustmentcolor_g1</property>
-                            <property name="inverted">True</property>
-                            <property name="round-digits">1</property>
-                            <property name="draw-value">False</property>
-                          </object>
-                          <packing>
-                            <property name="left-attach">1</property>
-                            <property name="top-attach">1</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkScale" id="color_g1">
-                            <property name="visible">True</property>
-                            <property name="can-focus">True</property>
-                            <property name="vexpand">True</property>
-                            <property name="orientation">vertical</property>
-                            <property name="adjustment">adjustmentcolor_b1</property>
-                            <property name="inverted">True</property>
-                            <property name="round-digits">1</property>
-                            <property name="draw-value">False</property>
-                          </object>
-                          <packing>
-                            <property name="left-attach">2</property>
-                            <property name="top-attach">1</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkScale" id="color_hue1">
-                            <property name="visible">True</property>
-                            <property name="can-focus">True</property>
-                            <property name="vexpand">True</property>
-                            <property name="orientation">vertical</property>
-                            <property name="adjustment">adjustmentcolor_hue1</property>
-                            <property name="inverted">True</property>
-                            <property name="round-digits">1</property>
-                            <property name="draw-value">False</property>
-                          </object>
-                          <packing>
-                            <property name="left-attach">3</property>
-                            <property name="top-attach">1</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkScale" id="color_saturation1">
-                            <property name="visible">True</property>
-                            <property name="can-focus">True</property>
-                            <property name="vexpand">True</property>
-                            <property name="orientation">vertical</property>
-                            <property name="adjustment">adjustmentcolor_satuation1</property>
-                            <property name="inverted">True</property>
-                            <property name="round-digits">1</property>
-                            <property name="draw-value">False</property>
-                          </object>
-                          <packing>
-                            <property name="left-attach">4</property>
-                            <property name="top-attach">1</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkSpinButton" id="hue1">
-                            <property name="visible">True</property>
-                            <property name="can-focus">True</property>
-                            <property name="caps-lock-warning">False</property>
-                            <property name="input-purpose">number</property>
-                            <property name="orientation">vertical</property>
-                            <property name="adjustment">adjustmentcolor_hue1</property>
-                            <property name="climb-rate">0.5</property>
-                            <property name="digits">1</property>
-                            <property name="numeric">True</property>
-                          </object>
-                          <packing>
-                            <property name="left-attach">3</property>
-                            <property name="top-attach">2</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkSpinButton" id="saturation1">
-                            <property name="visible">True</property>
-                            <property name="can-focus">True</property>
-                            <property name="input-purpose">number</property>
-                            <property name="orientation">vertical</property>
-                            <property name="adjustment">adjustmentcolor_satuation1</property>
-                            <property name="climb-rate">0.5</property>
-                            <property name="digits">1</property>
-                            <property name="numeric">True</property>
-                          </object>
-                          <packing>
-                            <property name="left-attach">4</property>
-                            <property name="top-attach">2</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkSpinButton" id="r1">
-                            <property name="visible">True</property>
-                            <property name="can-focus">True</property>
-                            <property name="text" translatable="yes">0.0</property>
-                            <property name="caps-lock-warning">False</property>
-                            <property name="input-purpose">number</property>
-                            <property name="orientation">vertical</property>
-                            <property name="adjustment">adjustmentcolor_r1</property>
-                            <property name="climb-rate">0.5</property>
-                            <property name="numeric">True</property>
-                          </object>
-                          <packing>
-                            <property name="left-attach">0</property>
-                            <property name="top-attach">2</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkSpinButton" id="g1">
-                            <property name="visible">True</property>
-                            <property name="can-focus">True</property>
-                            <property name="text" translatable="yes">0.0</property>
-                            <property name="caps-lock-warning">False</property>
-                            <property name="input-purpose">number</property>
-                            <property name="orientation">vertical</property>
-                            <property name="adjustment">adjustmentcolor_g1</property>
-                            <property name="climb-rate">0.5</property>
-                            <property name="digits">1</property>
-                            <property name="numeric">True</property>
-                          </object>
-                          <packing>
-                            <property name="left-attach">1</property>
-                            <property name="top-attach">2</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkSpinButton" id="b1">
-                            <property name="visible">True</property>
-                            <property name="can-focus">True</property>
-                            <property name="text" translatable="yes">0.0</property>
-                            <property name="caps-lock-warning">False</property>
-                            <property name="input-purpose">number</property>
-                            <property name="orientation">vertical</property>
-                            <property name="adjustment">adjustmentcolor_b1</property>
-                            <property name="climb-rate">0.5</property>
-                            <property name="digits">1</property>
-                            <property name="numeric">True</property>
-                          </object>
-                          <packing>
-                            <property name="left-attach">2</property>
-                            <property name="top-attach">2</property>
-                          </packing>
-                        </child>
-                      </object>
-                      <packing>
-                        <property name="expand">False</property>
-                        <property name="fill">True</property>
-                        <property name="position">0</property>
-                      </packing>
-                    </child>
-                    <child>
-                      <object class="GtkLabel">
-                        <property name="visible">True</property>
-                        <property name="can-focus">False</property>
-                        <property name="label" translatable="yes">Beat Sensitivity</property>
-                      </object>
-                      <packing>
-                        <property name="expand">False</property>
-                        <property name="fill">True</property>
-                        <property name="position">1</property>
-                      </packing>
-                    </child>
-                    <child>
-                      <object class="GtkScale" id="senstitivity1">
-                        <property name="visible">True</property>
-                        <property name="can-focus">True</property>
-                        <property name="adjustment">adjustmentsensitivity1</property>
-                        <property name="round-digits">1</property>
-                        <property name="value-pos">left</property>
-                      </object>
-                      <packing>
-                        <property name="expand">False</property>
-                        <property name="fill">True</property>
-                        <property name="position">2</property>
-                      </packing>
-                    </child>
-                  </object>
-                  <packing>
-                    <property name="expand">False</property>
-                    <property name="fill">True</property>
-                    <property name="position">0</property>
-                  </packing>
-                </child>
-                <child>
                   <object class="GtkButton" id="loadleft">
                     <property name="label" translatable="yes">Load 1</property>
                     <property name="visible">True</property>
@@ -679,6 +418,306 @@
                   </packing>
                 </child>
                 <child>
+                  <object class="GtkBox">
+                    <property name="visible">True</property>
+                    <property name="can-focus">False</property>
+                    <property name="orientation">vertical</property>
+                    <child>
+                      <object class="GtkLabel">
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
+                        <property name="label" translatable="yes">Audio Volume</property>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">0</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkScale" id="volume1">
+                        <property name="visible">True</property>
+                        <property name="can-focus">True</property>
+                        <property name="adjustment">adjustmentvolume1</property>
+                        <property name="round-digits">1</property>
+                        <property name="value-pos">left</property>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">1</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkLabel">
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
+                        <property name="label" translatable="yes">Beat Sensitivity</property>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">2</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkScale" id="senstitivity1">
+                        <property name="visible">True</property>
+                        <property name="can-focus">True</property>
+                        <property name="adjustment">adjustmentsensitivity1</property>
+                        <property name="round-digits">1</property>
+                        <property name="value-pos">left</property>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">3</property>
+                      </packing>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">True</property>
+                    <property name="position">2</property>
+                  </packing>
+                </child>
+                <child>
+                  <!-- n-columns=5 n-rows=3 -->
+                  <object class="GtkGrid">
+                    <property name="visible">True</property>
+                    <property name="can-focus">False</property>
+                    <property name="vexpand">True</property>
+                    <child>
+                      <object class="GtkLabel">
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
+                        <property name="label" translatable="yes">R</property>
+                      </object>
+                      <packing>
+                        <property name="left-attach">0</property>
+                        <property name="top-attach">0</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkLabel">
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
+                        <property name="label" translatable="yes">G</property>
+                      </object>
+                      <packing>
+                        <property name="left-attach">1</property>
+                        <property name="top-attach">0</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkLabel">
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
+                        <property name="label" translatable="yes">B</property>
+                      </object>
+                      <packing>
+                        <property name="left-attach">2</property>
+                        <property name="top-attach">0</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkLabel">
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
+                        <property name="label" translatable="yes">Hue</property>
+                      </object>
+                      <packing>
+                        <property name="left-attach">3</property>
+                        <property name="top-attach">0</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkLabel">
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
+                        <property name="label" translatable="yes">Staturation</property>
+                      </object>
+                      <packing>
+                        <property name="left-attach">4</property>
+                        <property name="top-attach">0</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkScale" id="color_r1">
+                        <property name="visible">True</property>
+                        <property name="can-focus">True</property>
+                        <property name="vexpand">True</property>
+                        <property name="orientation">vertical</property>
+                        <property name="adjustment">adjustmentcolor_r1</property>
+                        <property name="inverted">True</property>
+                        <property name="draw-value">False</property>
+                      </object>
+                      <packing>
+                        <property name="left-attach">0</property>
+                        <property name="top-attach">1</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkScale" id="color_b1">
+                        <property name="visible">True</property>
+                        <property name="can-focus">True</property>
+                        <property name="vexpand">True</property>
+                        <property name="orientation">vertical</property>
+                        <property name="adjustment">adjustmentcolor_g1</property>
+                        <property name="inverted">True</property>
+                        <property name="draw-value">False</property>
+                      </object>
+                      <packing>
+                        <property name="left-attach">1</property>
+                        <property name="top-attach">1</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkScale" id="color_g1">
+                        <property name="visible">True</property>
+                        <property name="can-focus">True</property>
+                        <property name="vexpand">True</property>
+                        <property name="orientation">vertical</property>
+                        <property name="adjustment">adjustmentcolor_b1</property>
+                        <property name="inverted">True</property>
+                        <property name="draw-value">False</property>
+                      </object>
+                      <packing>
+                        <property name="left-attach">2</property>
+                        <property name="top-attach">1</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkScale" id="color_hue1">
+                        <property name="visible">True</property>
+                        <property name="can-focus">True</property>
+                        <property name="vexpand">True</property>
+                        <property name="orientation">vertical</property>
+                        <property name="adjustment">adjustmentcolor_hue1</property>
+                        <property name="inverted">True</property>
+                        <property name="draw-value">False</property>
+                      </object>
+                      <packing>
+                        <property name="left-attach">3</property>
+                        <property name="top-attach">1</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkScale" id="color_saturation1">
+                        <property name="visible">True</property>
+                        <property name="can-focus">True</property>
+                        <property name="vexpand">True</property>
+                        <property name="orientation">vertical</property>
+                        <property name="adjustment">adjustmentcolor_satuation1</property>
+                        <property name="inverted">True</property>
+                        <property name="draw-value">False</property>
+                      </object>
+                      <packing>
+                        <property name="left-attach">4</property>
+                        <property name="top-attach">1</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkSpinButton" id="hue1">
+                        <property name="visible">True</property>
+                        <property name="can-focus">True</property>
+                        <property name="text" translatable="yes">100.0</property>
+                        <property name="caps-lock-warning">False</property>
+                        <property name="input-purpose">number</property>
+                        <property name="orientation">vertical</property>
+                        <property name="adjustment">adjustmentcolor_hue1</property>
+                        <property name="climb-rate">0.5</property>
+                        <property name="digits">1</property>
+                        <property name="numeric">True</property>
+                        <property name="value">100</property>
+                      </object>
+                      <packing>
+                        <property name="left-attach">3</property>
+                        <property name="top-attach">2</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkSpinButton" id="r1">
+                        <property name="visible">True</property>
+                        <property name="can-focus">True</property>
+                        <property name="text" translatable="yes">100</property>
+                        <property name="caps-lock-warning">False</property>
+                        <property name="input-purpose">number</property>
+                        <property name="orientation">vertical</property>
+                        <property name="adjustment">adjustmentcolor_r1</property>
+                        <property name="climb-rate">0.5</property>
+                        <property name="numeric">True</property>
+                        <property name="value">100</property>
+                      </object>
+                      <packing>
+                        <property name="left-attach">0</property>
+                        <property name="top-attach">2</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkSpinButton" id="g1">
+                        <property name="visible">True</property>
+                        <property name="can-focus">True</property>
+                        <property name="text" translatable="yes">100.0</property>
+                        <property name="caps-lock-warning">False</property>
+                        <property name="input-purpose">number</property>
+                        <property name="orientation">vertical</property>
+                        <property name="adjustment">adjustmentcolor_g1</property>
+                        <property name="climb-rate">0.5</property>
+                        <property name="digits">1</property>
+                        <property name="numeric">True</property>
+                        <property name="value">100</property>
+                      </object>
+                      <packing>
+                        <property name="left-attach">1</property>
+                        <property name="top-attach">2</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkSpinButton" id="b1">
+                        <property name="visible">True</property>
+                        <property name="can-focus">True</property>
+                        <property name="text" translatable="yes">100.0</property>
+                        <property name="caps-lock-warning">False</property>
+                        <property name="input-purpose">number</property>
+                        <property name="orientation">vertical</property>
+                        <property name="adjustment">adjustmentcolor_b1</property>
+                        <property name="climb-rate">0.5</property>
+                        <property name="digits">1</property>
+                        <property name="numeric">True</property>
+                        <property name="value">100</property>
+                      </object>
+                      <packing>
+                        <property name="left-attach">2</property>
+                        <property name="top-attach">2</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkSpinButton" id="saturation1">
+                        <property name="visible">True</property>
+                        <property name="can-focus">True</property>
+                        <property name="text" translatable="yes">100.0</property>
+                        <property name="input-purpose">number</property>
+                        <property name="orientation">vertical</property>
+                        <property name="adjustment">adjustmentcolor_satuation1</property>
+                        <property name="climb-rate">0.5</property>
+                        <property name="digits">1</property>
+                        <property name="numeric">True</property>
+                        <property name="value">100</property>
+                      </object>
+                      <packing>
+                        <property name="left-attach">4</property>
+                        <property name="top-attach">2</property>
+                      </packing>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">True</property>
+                    <property name="position">3</property>
+                  </packing>
+                </child>
+                <child>
                   <object class="GtkLabel" id="preset1">
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
@@ -687,7 +726,7 @@
                   <packing>
                     <property name="expand">False</property>
                     <property name="fill">True</property>
-                    <property name="position">2</property>
+                    <property name="position">4</property>
                   </packing>
                 </child>
               </object>
@@ -740,240 +779,48 @@
                 <property name="can-focus">False</property>
                 <property name="orientation">vertical</property>
                 <child>
+                  <object class="GtkButton" id="loadleft1">
+                    <property name="label" translatable="yes">Load 2</property>
+                    <property name="visible">True</property>
+                    <property name="can-focus">True</property>
+                    <property name="receives-default">True</property>
+                    <signal name="clicked" handler="load_preset2" swapped="no"/>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">True</property>
+                    <property name="position">0</property>
+                  </packing>
+                </child>
+                <child>
                   <object class="GtkBox">
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
-                    <property name="vexpand">True</property>
                     <property name="orientation">vertical</property>
                     <child>
-                      <!-- n-columns=5 n-rows=3 -->
-                      <object class="GtkGrid">
+                      <object class="GtkLabel">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
-                        <property name="vexpand">True</property>
-                        <child>
-                          <object class="GtkLabel">
-                            <property name="visible">True</property>
-                            <property name="can-focus">False</property>
-                            <property name="label" translatable="yes">R</property>
-                          </object>
-                          <packing>
-                            <property name="left-attach">0</property>
-                            <property name="top-attach">0</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkLabel">
-                            <property name="visible">True</property>
-                            <property name="can-focus">False</property>
-                            <property name="label" translatable="yes">G</property>
-                          </object>
-                          <packing>
-                            <property name="left-attach">1</property>
-                            <property name="top-attach">0</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkLabel">
-                            <property name="visible">True</property>
-                            <property name="can-focus">False</property>
-                            <property name="label" translatable="yes">B</property>
-                          </object>
-                          <packing>
-                            <property name="left-attach">2</property>
-                            <property name="top-attach">0</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkLabel">
-                            <property name="visible">True</property>
-                            <property name="can-focus">False</property>
-                            <property name="label" translatable="yes">Hue</property>
-                          </object>
-                          <packing>
-                            <property name="left-attach">3</property>
-                            <property name="top-attach">0</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkLabel">
-                            <property name="visible">True</property>
-                            <property name="can-focus">False</property>
-                            <property name="label" translatable="yes">Staturation</property>
-                          </object>
-                          <packing>
-                            <property name="left-attach">4</property>
-                            <property name="top-attach">0</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkScale" id="color_r2">
-                            <property name="visible">True</property>
-                            <property name="can-focus">True</property>
-                            <property name="vexpand">True</property>
-                            <property name="orientation">vertical</property>
-                            <property name="adjustment">adjustmentcolor_r2</property>
-                            <property name="inverted">True</property>
-                            <property name="draw-value">False</property>
-                          </object>
-                          <packing>
-                            <property name="left-attach">0</property>
-                            <property name="top-attach">1</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkScale" id="color_b2">
-                            <property name="visible">True</property>
-                            <property name="can-focus">True</property>
-                            <property name="vexpand">True</property>
-                            <property name="orientation">vertical</property>
-                            <property name="adjustment">adjustmentcolor_g2</property>
-                            <property name="inverted">True</property>
-                            <property name="draw-value">False</property>
-                          </object>
-                          <packing>
-                            <property name="left-attach">1</property>
-                            <property name="top-attach">1</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkScale" id="color_g2">
-                            <property name="visible">True</property>
-                            <property name="can-focus">True</property>
-                            <property name="vexpand">True</property>
-                            <property name="orientation">vertical</property>
-                            <property name="adjustment">adjustmentcolor_b2</property>
-                            <property name="inverted">True</property>
-                            <property name="draw-value">False</property>
-                          </object>
-                          <packing>
-                            <property name="left-attach">2</property>
-                            <property name="top-attach">1</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkScale" id="color_hue2">
-                            <property name="visible">True</property>
-                            <property name="can-focus">True</property>
-                            <property name="vexpand">True</property>
-                            <property name="orientation">vertical</property>
-                            <property name="adjustment">adjustmentcolor_hue2</property>
-                            <property name="inverted">True</property>
-                            <property name="draw-value">False</property>
-                          </object>
-                          <packing>
-                            <property name="left-attach">3</property>
-                            <property name="top-attach">1</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkScale" id="color_saturation2">
-                            <property name="visible">True</property>
-                            <property name="can-focus">True</property>
-                            <property name="vexpand">True</property>
-                            <property name="orientation">vertical</property>
-                            <property name="adjustment">adjustmentcolor_satuation2</property>
-                            <property name="inverted">True</property>
-                            <property name="draw-value">False</property>
-                          </object>
-                          <packing>
-                            <property name="left-attach">4</property>
-                            <property name="top-attach">1</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkSpinButton" id="hue2">
-                            <property name="visible">True</property>
-                            <property name="can-focus">True</property>
-                            <property name="text" translatable="yes">0.0</property>
-                            <property name="caps-lock-warning">False</property>
-                            <property name="input-purpose">number</property>
-                            <property name="orientation">vertical</property>
-                            <property name="adjustment">adjustmentcolor_hue2</property>
-                            <property name="climb-rate">0.5</property>
-                            <property name="digits">1</property>
-                            <property name="numeric">True</property>
-                          </object>
-                          <packing>
-                            <property name="left-attach">3</property>
-                            <property name="top-attach">2</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkSpinButton" id="saturation2">
-                            <property name="visible">True</property>
-                            <property name="can-focus">True</property>
-                            <property name="text" translatable="yes">0.0</property>
-                            <property name="input-purpose">number</property>
-                            <property name="orientation">vertical</property>
-                            <property name="adjustment">adjustmentcolor_satuation2</property>
-                            <property name="climb-rate">0.5</property>
-                            <property name="digits">1</property>
-                            <property name="numeric">True</property>
-                          </object>
-                          <packing>
-                            <property name="left-attach">4</property>
-                            <property name="top-attach">2</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkSpinButton" id="r2">
-                            <property name="visible">True</property>
-                            <property name="can-focus">True</property>
-                            <property name="text" translatable="yes">0</property>
-                            <property name="caps-lock-warning">False</property>
-                            <property name="input-purpose">number</property>
-                            <property name="orientation">vertical</property>
-                            <property name="adjustment">adjustmentcolor_r2</property>
-                            <property name="climb-rate">0.5</property>
-                            <property name="numeric">True</property>
-                          </object>
-                          <packing>
-                            <property name="left-attach">0</property>
-                            <property name="top-attach">2</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkSpinButton" id="g2">
-                            <property name="visible">True</property>
-                            <property name="can-focus">True</property>
-                            <property name="text" translatable="yes">0.0</property>
-                            <property name="caps-lock-warning">False</property>
-                            <property name="input-purpose">number</property>
-                            <property name="orientation">vertical</property>
-                            <property name="adjustment">adjustmentcolor_g2</property>
-                            <property name="climb-rate">0.5</property>
-                            <property name="digits">1</property>
-                            <property name="numeric">True</property>
-                          </object>
-                          <packing>
-                            <property name="left-attach">1</property>
-                            <property name="top-attach">2</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkSpinButton" id="b2">
-                            <property name="visible">True</property>
-                            <property name="can-focus">True</property>
-                            <property name="text" translatable="yes">0.0</property>
-                            <property name="caps-lock-warning">False</property>
-                            <property name="input-purpose">number</property>
-                            <property name="orientation">vertical</property>
-                            <property name="adjustment">adjustmentcolor_b2</property>
-                            <property name="climb-rate">0.5</property>
-                            <property name="digits">1</property>
-                            <property name="numeric">True</property>
-                          </object>
-                          <packing>
-                            <property name="left-attach">2</property>
-                            <property name="top-attach">2</property>
-                          </packing>
-                        </child>
+                        <property name="label" translatable="yes">Audio Volume</property>
                       </object>
                       <packing>
                         <property name="expand">False</property>
                         <property name="fill">True</property>
                         <property name="position">0</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkScale" id="volume2">
+                        <property name="visible">True</property>
+                        <property name="can-focus">True</property>
+                        <property name="adjustment">adjustmentvolume2</property>
+                        <property name="round-digits">1</property>
+                        <property name="value-pos">left</property>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">1</property>
                       </packing>
                     </child>
                     <child>
@@ -985,7 +832,7 @@
                       <packing>
                         <property name="expand">False</property>
                         <property name="fill">True</property>
-                        <property name="position">1</property>
+                        <property name="position">2</property>
                       </packing>
                     </child>
                     <child>
@@ -999,28 +846,250 @@
                       <packing>
                         <property name="expand">False</property>
                         <property name="fill">True</property>
-                        <property name="position">2</property>
+                        <property name="position">3</property>
                       </packing>
                     </child>
                   </object>
                   <packing>
                     <property name="expand">False</property>
                     <property name="fill">True</property>
-                    <property name="position">0</property>
+                    <property name="position">1</property>
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkButton" id="loadleft1">
-                    <property name="label" translatable="yes">Load 2</property>
+                  <!-- n-columns=5 n-rows=3 -->
+                  <object class="GtkGrid">
                     <property name="visible">True</property>
-                    <property name="can-focus">True</property>
-                    <property name="receives-default">True</property>
-                    <signal name="clicked" handler="load_preset2" swapped="no"/>
+                    <property name="can-focus">False</property>
+                    <property name="vexpand">True</property>
+                    <child>
+                      <object class="GtkLabel">
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
+                        <property name="label" translatable="yes">R</property>
+                      </object>
+                      <packing>
+                        <property name="left-attach">0</property>
+                        <property name="top-attach">0</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkLabel">
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
+                        <property name="label" translatable="yes">G</property>
+                      </object>
+                      <packing>
+                        <property name="left-attach">1</property>
+                        <property name="top-attach">0</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkLabel">
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
+                        <property name="label" translatable="yes">B</property>
+                      </object>
+                      <packing>
+                        <property name="left-attach">2</property>
+                        <property name="top-attach">0</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkLabel">
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
+                        <property name="label" translatable="yes">Hue</property>
+                      </object>
+                      <packing>
+                        <property name="left-attach">3</property>
+                        <property name="top-attach">0</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkLabel">
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
+                        <property name="label" translatable="yes">Staturation</property>
+                      </object>
+                      <packing>
+                        <property name="left-attach">4</property>
+                        <property name="top-attach">0</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkScale" id="color_r2">
+                        <property name="visible">True</property>
+                        <property name="can-focus">True</property>
+                        <property name="vexpand">True</property>
+                        <property name="orientation">vertical</property>
+                        <property name="adjustment">adjustmentcolor_r2</property>
+                        <property name="inverted">True</property>
+                        <property name="draw-value">False</property>
+                      </object>
+                      <packing>
+                        <property name="left-attach">0</property>
+                        <property name="top-attach">1</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkScale" id="color_b2">
+                        <property name="visible">True</property>
+                        <property name="can-focus">True</property>
+                        <property name="vexpand">True</property>
+                        <property name="orientation">vertical</property>
+                        <property name="adjustment">adjustmentcolor_g2</property>
+                        <property name="inverted">True</property>
+                        <property name="draw-value">False</property>
+                      </object>
+                      <packing>
+                        <property name="left-attach">1</property>
+                        <property name="top-attach">1</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkScale" id="color_g2">
+                        <property name="visible">True</property>
+                        <property name="can-focus">True</property>
+                        <property name="vexpand">True</property>
+                        <property name="orientation">vertical</property>
+                        <property name="adjustment">adjustmentcolor_b2</property>
+                        <property name="inverted">True</property>
+                        <property name="draw-value">False</property>
+                      </object>
+                      <packing>
+                        <property name="left-attach">2</property>
+                        <property name="top-attach">1</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkScale" id="color_hue2">
+                        <property name="visible">True</property>
+                        <property name="can-focus">True</property>
+                        <property name="vexpand">True</property>
+                        <property name="orientation">vertical</property>
+                        <property name="adjustment">adjustmentcolor_hue2</property>
+                        <property name="inverted">True</property>
+                        <property name="draw-value">False</property>
+                      </object>
+                      <packing>
+                        <property name="left-attach">3</property>
+                        <property name="top-attach">1</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkScale" id="color_saturation2">
+                        <property name="visible">True</property>
+                        <property name="can-focus">True</property>
+                        <property name="vexpand">True</property>
+                        <property name="orientation">vertical</property>
+                        <property name="adjustment">adjustmentcolor_satuation2</property>
+                        <property name="inverted">True</property>
+                        <property name="draw-value">False</property>
+                      </object>
+                      <packing>
+                        <property name="left-attach">4</property>
+                        <property name="top-attach">1</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkSpinButton" id="hue2">
+                        <property name="visible">True</property>
+                        <property name="can-focus">True</property>
+                        <property name="text" translatable="yes">100.0</property>
+                        <property name="caps-lock-warning">False</property>
+                        <property name="input-purpose">number</property>
+                        <property name="orientation">vertical</property>
+                        <property name="adjustment">adjustmentcolor_hue2</property>
+                        <property name="climb-rate">0.5</property>
+                        <property name="digits">1</property>
+                        <property name="numeric">True</property>
+                        <property name="value">100</property>
+                      </object>
+                      <packing>
+                        <property name="left-attach">3</property>
+                        <property name="top-attach">2</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkSpinButton" id="saturation2">
+                        <property name="visible">True</property>
+                        <property name="can-focus">True</property>
+                        <property name="text" translatable="yes">100.0</property>
+                        <property name="input-purpose">number</property>
+                        <property name="orientation">vertical</property>
+                        <property name="adjustment">adjustmentcolor_satuation2</property>
+                        <property name="climb-rate">0.5</property>
+                        <property name="digits">1</property>
+                        <property name="numeric">True</property>
+                        <property name="value">100</property>
+                      </object>
+                      <packing>
+                        <property name="left-attach">4</property>
+                        <property name="top-attach">2</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkSpinButton" id="r2">
+                        <property name="visible">True</property>
+                        <property name="can-focus">True</property>
+                        <property name="text" translatable="yes">100</property>
+                        <property name="caps-lock-warning">False</property>
+                        <property name="input-purpose">number</property>
+                        <property name="orientation">vertical</property>
+                        <property name="adjustment">adjustmentcolor_r2</property>
+                        <property name="climb-rate">0.5</property>
+                        <property name="numeric">True</property>
+                        <property name="value">100</property>
+                      </object>
+                      <packing>
+                        <property name="left-attach">0</property>
+                        <property name="top-attach">2</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkSpinButton" id="g2">
+                        <property name="visible">True</property>
+                        <property name="can-focus">True</property>
+                        <property name="text" translatable="yes">100.0</property>
+                        <property name="caps-lock-warning">False</property>
+                        <property name="input-purpose">number</property>
+                        <property name="orientation">vertical</property>
+                        <property name="adjustment">adjustmentcolor_g2</property>
+                        <property name="climb-rate">0.5</property>
+                        <property name="digits">1</property>
+                        <property name="numeric">True</property>
+                        <property name="value">100</property>
+                      </object>
+                      <packing>
+                        <property name="left-attach">1</property>
+                        <property name="top-attach">2</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkSpinButton" id="b2">
+                        <property name="visible">True</property>
+                        <property name="can-focus">True</property>
+                        <property name="text" translatable="yes">100.0</property>
+                        <property name="caps-lock-warning">False</property>
+                        <property name="input-purpose">number</property>
+                        <property name="orientation">vertical</property>
+                        <property name="adjustment">adjustmentcolor_b2</property>
+                        <property name="climb-rate">0.5</property>
+                        <property name="digits">1</property>
+                        <property name="numeric">True</property>
+                        <property name="value">100</property>
+                      </object>
+                      <packing>
+                        <property name="left-attach">2</property>
+                        <property name="top-attach">2</property>
+                      </packing>
+                    </child>
                   </object>
                   <packing>
                     <property name="expand">False</property>
                     <property name="fill">True</property>
-                    <property name="position">2</property>
+                    <property name="position">3</property>
                   </packing>
                 </child>
                 <child>
@@ -1032,7 +1101,7 @@
                   <packing>
                     <property name="expand">False</property>
                     <property name="fill">True</property>
-                    <property name="position">3</property>
+                    <property name="position">4</property>
                   </packing>
                 </child>
               </object>
