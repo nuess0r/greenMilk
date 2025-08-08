@@ -5,8 +5,9 @@
 import os
 import re
 import signal
-import pyliblo3 as liblo
 import time
+from pathlib import Path
+import pyliblo3 as liblo
 
 from mididings import *
 from mididings import event
@@ -93,28 +94,29 @@ class guitest:
     def print_text(self, widget):
         print("Hello World!")
 
+    def main_quit(self, widget, event):
+        Gtk.main_quit
+
     def load_preset1(self, widget):
         presetbrowser = self.builder.get_object("presetbrowser")
+        label = self.builder.get_object("preset1")
         pm = self.pipeline.get_by_name("pm1")
 
         preset = presetbrowser.get_filename()
         print(preset)
-
-        pm.set_state(Gst.State.NULL)
+        label.set_label(Path(preset).stem)
         pm.set_property("preset", preset)
-        pm.set_state(Gst.State.PLAYING)
         
 
     def load_preset2(self, widget):
         presetbrowser = self.builder.get_object("presetbrowser")
+        label = self.builder.get_object("preset2")
         pm = self.pipeline.get_by_name("pm2")
 
         preset = presetbrowser.get_filename()
         print(preset)
-
-        pm.set_state(Gst.State.NULL)
+        label.set_label(Path(preset).stem)
         pm.set_property("preset", preset)
-        pm.set_state(Gst.State.PLAYING)
 
     def screenwindow_keypress(self, widget, event):
         if event.keyval == Gdk.KEY_F10:
