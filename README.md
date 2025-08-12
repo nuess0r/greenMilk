@@ -1,9 +1,39 @@
 # greenMilk
 #####
 
+This is a VJ tool to mix Milkdrop visuals.
+
+It's using projectM, its gstreamer plugin, gstreamer, mididings and GTK3.
+
+Everything is glued together with Python3.
+
+## Warning
+
+This is considered an example, research and/or experimental code.
+
+Some of the underlying projects might be not in the shape yet for such a use.
+The UX is a first guess of what might be useful.
+
+## Future plans
+
+At some unknown time in the future it will be necessary to design a software from scratch
+with a proper architeture, evaluation what technologies, libaries etc. shall be used etc.
+
+## Contribution
+
+Until then, let's find out, what is actually needed by users, VJs, package maintainers etc.
+
+Pull requests welcome :-)
+
+Feel free to open a Github issue for any idea, wish, feature you have.
+
+Feel free to play around with the GUI, tailor it for your needs, make themes and show it to others.
+Hopefully we can at some point discuss then more about workflows, feedback from real world useage. 
 
 
-## Requirements
+## Installation
+
+###  Requirements
 
 * Python 3 (Tested with 3.13.3)
 * python3-pi (Tested with 3.50.0-4)
@@ -12,30 +42,38 @@
 * mididings (Tested with 20230114)
 * BOOST (Tested with 1.88)
 
-## Usage
+###Debian Trixie
 
 1. Install the prequisites
-```
-#Debian Trixie
-```
-sudo apt-get install gstreamer1.0-plugins-base gstreamer1.0-opencv gstreamer1.0-python3-plugin-loader gstreamer1.0-tools libpython3-dev python3-gi python3-gst-1.0 libboost-python1.88-dev libboost-thread1.88-dev
-git clone https://github.com/nuess0r/greenmilk.git
-python3 -m venv --system-site-packages .
-source bin/activate
-pip install pyliblo3 mididings
-```
+
+  sudo apt-get install gstreamer1.0-plugins-base gstreamer1.0-opencv gstreamer1.0-python3-plugin-loader gstreamer1.0-tools libpython3-dev python3-gi python>
+
+2. Download greenMilk and set up the Python environment
+
+  git clone https://github.com/nuess0r/greenmilk.git
+  python3 -m venv --system-site-packages .
+  source bin/activate
+  pip install pyliblo3 mididings
+
+## Usage
 
 1. Test MIDI controller
 
-```
-midireceiver.py
-```
 
-2. Show the GUI designed with glade. No function behind, just to test the layout of it and your installation
+ ./midireceiver.py
 
-```
-guitest.py
-```
+
+2. Show the GUI designed with glade.
+
+No function behind, just to test the layout of the GUI and your installation.
+Can be handy when you work on in the glade designer.
+
+  ./guitest.py
+
+3. You can generate and view the implemented gstreamer pipleline as PDF
+
+  export GST_DEBUG_DUMP_DOT_DIR=/tmp && ./greenMilk.py
+  dot -Tpdf /tmp/greenMilk-pipeline.dot > output.pdf
 
 ## Notes
 
