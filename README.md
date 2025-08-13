@@ -42,11 +42,11 @@ Hopefully we can at some point discuss then more about workflows, feedback from 
 * mididings (Tested with 20230114)
 * BOOST (Tested with 1.88)
 
-###Debian Trixie
+### Debian Trixie
 
 1. Install the prequisites
 
-  sudo apt-get install gstreamer1.0-plugins-base gstreamer1.0-opencv gstreamer1.0-python3-plugin-loader gstreamer1.0-tools libpython3-dev python3-gi python>
+  sudo apt-get install gstreamer1.0-plugins-base gstreamer1.0-opencv gstreamer1.0-python3-plugin-loader gstreamer1.0-tools gstreamer1.0-gtk3 libasound2-dev libpython3-dev python3-gi python>
 
 2. Download greenMilk and set up the Python environment
 
@@ -57,20 +57,27 @@ Hopefully we can at some point discuss then more about workflows, feedback from 
 
 ## Usage
 
-1. Test MIDI controller
+1. Launch greenMilk
+
+You should see two windows, one with GUI elements and the other for the full screen
+projection output.
+
+  ./greenMilk.py
+
+2. Test MIDI controller
 
 
  ./midireceiver.py
 
 
-2. Show the GUI designed with glade.
+3. Show the GUI designed with glade.
 
 No function behind, just to test the layout of the GUI and your installation.
 Can be handy when you work on in the glade designer.
 
   ./guitest.py
 
-3. You can generate and view the implemented gstreamer pipleline as PDF
+4. You can generate and view the implemented gstreamer pipleline as PDF
 
   export GST_DEBUG_DUMP_DOT_DIR=/tmp && ./greenMilk.py
   dot -Tpdf /tmp/greenMilk-pipeline.dot > output.pdf

@@ -7,7 +7,7 @@
 #==============================================================================
 
 # Mididings MIDI backend: 'alsa' or 'jack'
-backend='jack'
+backend='alsa'
 
 # Client to autoconnect the input MIDI port to
 autoconnect='default'
